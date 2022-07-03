@@ -1,0 +1,350 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\title{\textbf{}}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+
+\begin{center}
+    
+    {\LARGE \bf \textcolor{black}{RSA Cryptography}\par}
+
+    \vspace{2cm}
+
+    {\large \em Submitted by }\\
+    \vspace{0.5cm}
+   
+   \begin{tcolorbox}
+   \begin{center}
+    \textbf{Arnish Satasiya (202001031)\\
+        Jay Kuvadiya (202001042)\\
+        Meet Sutariya (202001046)\\
+        Deep Kanani (202001454)}
+    \end{center}
+
+    
+    \end{tcolorbox}
+    
+    \vspace{1cm}
+    {\large \em Submitted to }\\ 
+    \vspace{0.5cm}
+    {\LARGE \bf Prof. Manish K. Gupta}\\
+    \vspace{0.5cm}
+    {\LARGE \bf Prof. Rahul Muthu}\\
+    \vspace{1cm}
+    {\large \bf Course: Discrete Mathematics}\\ 
+    \vspace{0.5cm}
+    {\large \bf Course code: SC205}\\
+    \vspace{1cm}
+    \begin{center}
+     \includegraphics[width=100pt]{Daiict.png} 
+    \end{center}
+    
+\end{center}
+\pagebreak 
+\begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+\section{Introduction\\}
+	
+\begin{itemize}
+\item RSA is used for transmission of data (messages) securely . 
+\item The RSA algorithm, is an algorithm for Public Key cryptography .
+\item In public-key cryptography, users reveal a public encryption key so that other users in the system are able to send private messages to them, but each user has their own private decryption key . 
+\item The key to ensuring privacy in a public-key cryptosystem is for it to be extremely difficult to derive the decryption key from the publicly available encryption key . 
+\item The algorithm works by exploiting concepts from Number Theory ,\\ including \textbf{Fermat’s Little Theorem , Sieve Algorithm and \\Extended Euclid Algorithm}   
+\end{itemize}
+\vspace{1cm}
+\section{Mathematical Problem\\}
+
+    Nowadays Countries or any company need a way to communicate without anyone except receiver being able to decipher what exactly they are communicating. How the communication worked ?
+    
+    The ans is that they started out by establishing a cipher that both parties would use, and from there one ally would use the numbers correlating to a certain number to create a message. Once the message was received from the other ally that group would use the cipher established to decode the message.
+
+\pagebreak
+
+\begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+\section{Solution\\}
+
+\begin{itemize}
+\item Here, we have try to solve this problem using our Discrete Mathematics knowledge.
+\item Using the concept of RSA cryptography we can solve this real world problem.\\
+\end{itemize}
+
+
+{\LARGE \bf \textcolor{black}{How RSA works ?}\\}
+
+
+\begin{itemize}
+\item RSA works on two different keys i.e. Public Key and Private Key. 
+\item The Public Key is accessible by everyone and Private key is kept private. 
+\item Here, we describe two methods to perform RSA .   \\
+\end{itemize}
+
+\subsection{ Method 1 :  \\}
+
+\begin{itemize}
+\item If you want to send the message to one particular person , For that you have to encrypt your message using that person's public key n and e .
+\end{itemize}
+
+ \{ 
+	Here, n is multiplication of two Prime numbers (p and q)  and e must 	be\\        selected by satisfying this condition ---\(>\) 
+	( gcd of (p - 1)*(q - 1) and e  = 1 ) 
+\}
+\begin{itemize}
+\item After that , encrypted message will be sent to that particular person and that person will decrypt the message using his/her private key d . Person will get the exact message that you have sent.
+\end{itemize}
+
+\begin{itemize}
+\item By using this method the message will be shown to the only one person whom you want to send the message.
+\end{itemize}
+
+\begin{itemize}
+\item we can understand this method by the example given below , In this example... Alice want to send a number 896524 to bob .
+\end{itemize}
+
+\begin{itemize}
+\item for that Alice have used the public key n and e of Bob and encrypted the message , encrypted message 36982875 is sent to Bob.
+\end{itemize}
+
+\begin{itemize}
+\item Now , Bob will decrypt the message using his private key d and he'll get the original message 896524 that Alice has sent.
+\end{itemize}
+\pagebreak
+
+\begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+
+\begin{center}
+\includegraphics[width=300pt]{RSA.png} 
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{itemize}
+\item To encrypt a message using the RSA algorithm, the general method of the encryption procedure is as follows: 
+\end{itemize}
+
+\begin{tcolorbox}
+
+\textbf{Simple RSA}\\\\
+ First of all select message (\textcolor{red}{\textbf{M}}) that you ( here Alice ) want to send someone (here Bob).\\
+ To encrypt the message , compute \( M^e \) mod n .\\\\
+
+                 Cipher text \textcolor{blue}{\textbf{C}} = \textcolor{red}{\( M^e \)} mod n    \hspace{0.5cm} ( where n and e is Bob's Public Key )\\\\
+
+     n = p*q    ( p and q are large Prime numbers ) \\
+    \textbf{ \textcolor{blue}{gcd}} ( n , ( p-1 )*( q-1 ) ) = 1 .\\
+    
+    \end{tcolorbox}
+    
+    --\(>\) Now , C will be sent to Bob .
+    
+    \pagebreak
+    
+    \begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+
+    \begin{tcolorbox}
+    
+    To decrypt the C ( encrypted message ) Bob will do calculation that is given below :\\\\
+
+                                  D = ( \(C^d\) ) mod n      \hspace{1cm} ( where d is Bob's Private Key )\\\\
+where D is decrypted message .\\\\
+
+      d$\cdot $e$ \equiv $ 1\hspace{0.25cm} (mod n) \\\\
+
+So, by this Bob will get message that Alice want to sent him .\\
+
+  \end{tcolorbox}
+
+Code (in c++) : ( given in RSA1.cpp )\\\\
+\centering\textbf{{\LARGE \bf \textcolor{black}{Limitations of this Code :}\\}}
+\vspace{1cm}
+\begin{tcolorbox}
+
+
+
+\begin{itemize}
+\item This code is valid only if we want to encrypt integers , but we can't use this for the characters .
+\end{itemize}
+
+\begin{itemize}
+\item We can encrypt or decrypt the number in a limited range , if the number is to large (more than 8 digits) this code we'll not work .
+\end{itemize}
+
+\begin{itemize}
+\item In the real world scenario , RSA only based on numbers won't so helpful so this is the main limitations of this code.\\
+\end{itemize}
+
+  \end{tcolorbox}
+\pagebreak
+    \begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+\centering\textbf{{\LARGE \bf \textcolor{black}{Updated RSA}\\}}
+\vspace{1cm}
+\begin{tcolorbox}
+
+\begin{itemize}
+\item  For solving the limitations of Simple RSA code, we have written this code.
+\end{itemize}
+
+\begin{itemize}
+\item In this code , We have take input as string . By using string , we can also encrypt and decrypt very large length of message .
+\end{itemize}
+
+\begin{itemize}
+\item we can also encrypt or decrypt the characters , symbols , numbers etc.
+\end{itemize}
+
+\begin{itemize}
+\item Like the previous code there are same two methods for encrypt the message , This code is very similar to the previous code .
+\end{itemize}
+
+\begin{itemize}
+\item In this code , we'll encrypt the message by their ASCII value , we'll first make 2-2 pairs of the characters in the message , then we'll write their ASCII value and we'll take the public key n and e of the person whom you want to send the message for encrypting. 
+\end{itemize}
+\begin{itemize}
+\item For that first you should understand how we have used vector , we'll push back all the pairs in the vector .
+\end{itemize}
+
+\begin{itemize}
+\item If the length of the string is odd then the last pair won't be made so  we'll push back only that perticular character's ASCII value in the vector.
+\end{itemize}
+
+\begin{itemize}
+\item Now , one by one we'll encrypt every numbers of the vector using n and e as shown in previous code.
+\end{itemize}
+
+\begin{itemize}
+\item After encrypting the message , we will print all the elements in the vectors by ASCII values converting to the characters . By that we'll get the encrypted message.
+\end{itemize}
+
+\begin{itemize}
+\item Now for decrypt this encrypted message the receiver have to insert the decryption private key d .
+\end{itemize}
+
+\begin{itemize}
+\item By Inserting the correct decryption key , Message will be decrypted successfully and the only person whom you have sent the message able to see the correct message .\\
+\end{itemize}
+
+\end{tcolorbox}
+
+Code ( in c++ ) : ( refer RSAfinal.cpp )
+\pagebreak
+
+ \begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+\centering\textbf{{\LARGE \bf \textcolor{black}{Some Algorithms used in RSA}\\}}
+\vspace{1cm}
+\centering\textbf{{\LARGE \bf \textcolor{black}{1. Sieve Algorithm}\\}}
+\vspace{1cm}
+\begin{itemize}
+\item We can get Prime numbers ( p \& q ) from most powerful Sieve Algorithms :  ( refer Sieve.cpp ) 
+\end{itemize}
+
+\begin{tcolorbox}
+\begin{itemize}
+\item The sieve of Eratosthenes is one of the most Powerful Algorithm to find all prime numbers smaller than N, even when N is very large number.\\
+\end{itemize}
+\end{tcolorbox}
+\vspace{1cm}
+
+\centering\textbf{{\LARGE \bf \textcolor{black}{2. power function}\\}}
+\vspace{1cm}
+
+\begin{itemize}
+\item For understanding of pow() function \\: ( refer power.cpp )
+\end{itemize}
+
+\begin{tcolorbox}
+
+\begin{itemize}
+\item This algorithm is use for find the modulo of big numbers .
+\item ( \(N^M\) modulo P) , where N, M and P are large numbers .\\
+\end{itemize}
+\end{tcolorbox}
+\pagebreak
+    \begin{tikzpicture}
+[remember picture, overlay] \draw[line width = 4pt] ($(current page.north west) + (0.5in,-0.5in)$) rectangle ($(current page.south east) + (-0.5in,1in)$);
+\end{tikzpicture}
+
+\centering\textbf{{\LARGE \bf \textcolor{black}{3. Extended Euclidean Algorithm}\\}}
+\vspace{1cm}              
+
+
+\begin{itemize}
+\item For Find Modular Multiplicative Inverse ( for finding d )\\ : ( refer MMI.cpp )\\
+\end{itemize}
+
+\begin{tcolorbox}
+
+\begin{itemize}
+\item We have two integers a and m and we want to find inverse of a mod m .\\
+\end{itemize}
+
+\begin{itemize}
+\item The multiplicative inverse of a modulo m exists if and only if a and m are relatively prime ( gcd ( a, m ) = 1 )\\
+\end{itemize}
+
+and satisfy this equation : a$\cdot $x$ \equiv $ 1\hspace{0.25cm} ( mod m )
+
+\begin{itemize}
+\item \{ where , x is inverse of a mod m \}
+\end{itemize}
+
+         
+\begin{itemize}
+\item x should be in range \{ 1, 2, .....upto m-1 \}
+\end{itemize}
+
+\begin{itemize}
+\item By Extended Euclidean Algorithm, For any two integers A and B, We can find integers s and t, such that:
+
+                                                s·A + t·B = gcd( A, B )  
+\end{itemize}
+      
+( s and t are know as  Bezout Coefficients )\\
+
+   s$\cdot $a + t$\cdot $m  = 1  \hspace{1cm} \{ gcd ( a , m ) = 1 \}\\                            
+  ( s$\cdot $a + t$\cdot $m ) mod m = 1 mod m\\
+   s$\cdot $a mod m = 1 mod m\\                 
+   a$\cdot $s $ \equiv $ 1 mod m\\                            
+
+So, inverse of \textbf{a mod m} is\textbf{ s.}
+\end{tcolorbox}
+
+
+  
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
